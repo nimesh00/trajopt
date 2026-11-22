@@ -1,0 +1,67 @@
+trajopt
+Copyright 2026 Nimesh Khandelwal
+
+Licensed under the Apache License, Version 2.0 (LICENSE). This product includes or adapts the
+third-party material below, each under its own licence.
+
+--------------------------------------------------------------------------------
+Crocoddyl -- trajgen/croc.py adapts the formulation of crocoddyl/utils/quadruped.py
+(SimpleQuadrupedalGaitProblem). https://github.com/loco-3d/crocoddyl
+
+BSD 3-Clause License
+
+Copyright (C) 2018-2020 LAAS-CNRS,
+Copyright (C) 2019-2020 University of Edinburgh
+Copyright note valid unless otherwise stated in individual files.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+--------------------------------------------------------------------------------
+mjlab -- trajgen/dcmotor.py reproduces the DC motor clip of mjlab/actuator/dc_actuator.py
+(dc_motor_clip). https://github.com/mujocolab/mjlab
+Copyright 2025, The mjlab Developers. Licensed under the Apache License, Version 2.0.
+
+--------------------------------------------------------------------------------
+AI4Animation MANN dog motion capture -- data/dog/ (dog-gait-model.json, dog-gait-model.txt) is
+a model fitted to this data by tools/dog/. See data/dog/README.md.
+H. Zhang, S. Starke, T. Komura, J. Saito, "Mode-Adaptive Neural Networks for Quadruped Motion
+Control", ACM Transactions on Graphics 37(4), SIGGRAPH 2018.
+https://github.com/sebastianstarke/AI4Animation
+The data and everything in data/dog/ are licensed under Creative Commons Attribution-NonCommercial
+4.0 International (CC BY-NC 4.0), https://creativecommons.org/licenses/by-nc/4.0/ -- NOT under
+Apache-2.0. Non-commercial use only; references and policies made with --dog-style inherit this.
+
+--------------------------------------------------------------------------------
+DHAV1 model -- robots/dhav1.toml fetches models/dhav1_description from xterra_robots
+(https://github.com/xterra-robotics/xterra_robots) at a pinned commit at build time. The model is
+not redistributed here; it is Copyright (c) 2025-2026, xTerra Robotics, licensed BSD-3-Clause
+(its LICENSE is in the fetched checkout).
+
+--------------------------------------------------------------------------------
+Unitree Go2 model -- robots/go2.toml fetches unitree_go2 from MuJoCo Menagerie
+(https://github.com/google-deepmind/mujoco_menagerie) at a pinned commit at build time. The model
+is not redistributed here; it is licensed BSD-3-Clause (its LICENSE is in the fetched checkout).

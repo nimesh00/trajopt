@@ -1,0 +1,3 @@
+# Extra dependency of tools/ (plots in cycle.py dutymap / gait_select report / envelope.py / power_audit), on top of
+# requirements-solver.lock and requirements-video.txt. Version as in the environment the tools were last run with.
+matplotlib==3.11.2

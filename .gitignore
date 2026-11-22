@@ -1,0 +1,16 @@
+.venv/
+# generated data; only the README videos are tracked
+out/*
+!out/videos/
+out/videos/*
+!out/videos/dhav1-*.gif
+!out/videos/dhav1-*.mp4
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+MUJOCO_LOG.TXT
+
+# large policy checkpoints
+checkpoints/

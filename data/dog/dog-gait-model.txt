@@ -1,0 +1,51 @@
+MANN dog: 647 strides, 275 steady (contiguous same-family neighbour within 30 % speed)
+
+pace: 148 steady strides (111 straight, 16 left, 21 right) from 18 captures; speed at H0 0.82..1.38 m/s (median 1.05)
+  cadence f = 1.14..1.61 Hz (f* = 0.092 + 0.334 s, MAD 0.007)
+  duty FL/FR/RL/RR at median speed 0.57/0.61/0.52/0.49  slope/s -0.33/-0.30/-0.37/-0.41
+  touchdown offsets after FL: FR/RL/RR 0.477/0.960/0.447 (spread 0.014/0.016/0.016)  L = 0.04
+  swing apex / h FL/FR/RL/RR 0.213/0.174/0.157/0.173 (at H0 7.7 cm fore, 6.6 cm hind); along at mid-swing 0.64/0.58/0.45/0.40
+  hip-relative touchdown x / h FL/FR/RL/RR +0.40/+0.41/+0.45/+0.40  lift-off -0.56/-0.54/-0.50/-0.45
+  trunk ptp: heave 1.7 cm at H0, pitch 4.2 deg, roll 6.8 deg; |c1..3| heave/h 0.0023/0.0105/0.0004 sway ptp 1.9 cm, surge 2.4 cm roll deg 2.65/0.18/0.41
+  left  turns: 16 strides, yaw +0.58..+1.37 rad/s at H0, speed 0.54..1.24; offsets 0.512/0.946/0.452; f* resid +0.012; duty resid +0.01/-0.03/+0.01/-0.11; roll ptp 7.8 deg; outer/inner stride 1.02 (rigid body 1.15)
+  right turns: 21 strides, yaw -1.37..-0.60 rad/s at H0, speed 0.58..1.18; offsets 0.474/0.950/0.420; f* resid +0.022; duty resid -0.03/-0.03/-0.03/+0.01; roll ptp 9.7 deg; outer/inner stride 1.06 (rigid body 1.16)
+  lean: mean roll = -0.022 + -0.553 (s w*) rad, corr -0.59
+
+walk: 64 steady strides (32 straight, 22 left, 10 right) from 12 captures; speed at H0 0.27..1.36 m/s (median 0.67)
+  cadence f = 0.81..1.48 Hz (f* = 0.129 + 0.246 s, MAD 0.012)
+  duty FL/FR/RL/RR at median speed 0.65/0.67/0.63/0.61  slope/s -0.48/-0.44/-0.45/-0.71
+  touchdown offsets after FL: FR/RL/RR 0.484/0.863/0.354 (spread 0.022/0.031/0.032)  L = 0.14
+  swing apex / h FL/FR/RL/RR 0.228/0.201/0.149/0.166 (at H0 8.6 cm fore, 6.3 cm hind); along at mid-swing 0.63/0.59/0.43/0.38
+  hip-relative touchdown x / h FL/FR/RL/RR +0.34/+0.39/+0.38/+0.40  lift-off -0.48/-0.49/-0.48/-0.38
+  trunk ptp: heave 1.6 cm at H0, pitch 5.4 deg, roll 8.4 deg; |c1..3| heave/h 0.0025/0.0040/0.0008 sway ptp 3.0 cm, surge 3.5 cm roll deg 3.36/0.25/0.39
+  left  turns: 22 strides, yaw +0.62..+1.51 rad/s at H0, speed 0.38..0.74; offsets 0.528/0.847/0.365; f* resid +0.001; duty resid -0.01/-0.02/+0.00/-0.11; roll ptp 10.6 deg; outer/inner stride 1.11 (rigid body 1.39)
+  right turns: 10 strides, yaw -1.39..-0.60 rad/s at H0, speed 0.27..0.83; offsets 0.453/0.843/0.333; f* resid +0.013; duty resid -0.09/-0.03/-0.04/-0.03; roll ptp 10.6 deg; outer/inner stride 1.24 (rigid body 1.34)
+  lean: mean roll = -0.035 + -0.389 (s w*) rad, corr -0.38
+
+gallop-R: 33 steady strides (30 straight, 1 left, 2 right) from 9 captures; speed at H0 2.49..4.27 m/s (median 3.30)
+  cadence f = 1.95..2.05 Hz (f* = 0.367 + 0.022 s, MAD 0.011)
+  duty FL/FR/RL/RR at median speed 0.26/0.22/0.20/0.17  slope/s -0.17/-0.11/-0.13/-0.12
+  touchdown offsets after FL: FR/RL/RR 0.185/0.821/0.667 (spread 0.029/0.030/0.037)  L = 0.18
+  swing apex / h FL/FR/RL/RR 0.537/0.606/0.555/0.514 (at H0 22.9 cm fore, 21.4 cm hind); along at mid-swing 0.65/0.61/0.45/0.46
+  hip-relative touchdown x / h FL/FR/RL/RR +0.28/+0.35/+0.45/+0.17  lift-off -0.57/-0.46/-0.31/-0.41
+  trunk ptp: heave 4.6 cm at H0, pitch 22.0 deg, roll 18.4 deg; |c1..3| heave/h 0.0373/0.0084/0.0035 sway ptp 1.5 cm, surge 3.9 cm roll deg 7.80/0.17/0.26
+  lean: mean roll = -0.027 + -0.618 (s w*) rad, corr -0.83
+
+gallop-L: 15 steady strides (12 straight, 3 left, 0 right) from 4 captures; speed at H0 1.93..3.41 m/s (median 2.60)
+  cadence f = 2.06..2.06 Hz (f* = 0.416 + 0.000 s, MAD 0.022)
+  duty FL/FR/RL/RR at median speed 0.30/0.35/0.24/0.20  slope/s -0.20/-0.29/-0.12/-0.12
+  touchdown offsets after FL: FR/RL/RR 0.815/0.519/0.630 (spread 0.050/0.056/0.129)  L = 0.48
+  swing apex / h FL/FR/RL/RR 0.604/0.442/0.381/0.399 (at H0 20.9 cm fore, 15.6 cm hind); along at mid-swing 0.61/0.60/0.44/0.48
+  hip-relative touchdown x / h FL/FR/RL/RR +0.38/+0.34/+0.28/+0.30  lift-off -0.42/-0.51/-0.34/-0.28
+  trunk ptp: heave 10.3 cm at H0, pitch 33.1 deg, roll 17.1 deg; |c1..3| heave/h 0.0371/0.0153/0.0007 sway ptp 1.8 cm, surge 4.4 cm roll deg 4.96/0.40/0.34
+  lean: mean roll = +0.016 + -0.711 (s w*) rad, corr -0.84
+
+trot: 13 steady strides (13 straight, 0 left, 0 right) from 3 captures; speed at H0 2.01..2.44 m/s (median 2.12)
+  cadence f = 1.88..2.08 Hz (f* = 0.183 + 0.192 s, MAD 0.009)
+  duty FL/FR/RL/RR at median speed 0.38/0.39/0.31/0.27  slope/s -0.07/-0.30/-0.11/-0.08
+  touchdown offsets after FL: FR/RL/RR 0.500/0.536/0.065 (spread 0.017/0.018/0.007)  L = 0.46
+  swing apex / h FL/FR/RL/RR 0.288/0.319/0.208/0.236 (at H0 12.1 cm fore, 8.9 cm hind); along at mid-swing 0.59/0.57/0.50/0.48
+  hip-relative touchdown x / h FL/FR/RL/RR +0.34/+0.36/+0.32/+0.25  lift-off -0.51/-0.50/-0.43/-0.42
+  trunk ptp: heave 4.7 cm at H0, pitch 2.5 deg, roll 14.4 deg; |c1..3| heave/h 0.0029/0.0471/0.0004 sway ptp 2.5 cm, surge 1.6 cm roll deg 6.59/0.14/0.70
+  lean: mean roll = +0.005 + -0.552 (s w*) rad, corr -0.40
+canter-L  2 steady strides, only 2 straight: skipped

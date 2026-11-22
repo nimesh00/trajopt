@@ -1,0 +1,75 @@
+# DHAV1 robot configuration: the primary example robot (DHAV 1.3, point feet, 17.8 kg).
+#
+# Every key is required unless trajgen/config.py lists it as OPTIONAL, and unknown
+# keys are rejected: a misspelt field that silently falls back to a default is how
+# a trajectory ends up solved for a different plant than the one it is validated on.
+#
+# Relative paths resolve against this file. `~` and ${ENV} are expanded.
+#
+# Build the plant once (fetches the model, compiles, settles the stand):
+#     .venv/bin/python -m trajgen.build_plant robots/dhav1.toml
+
+[model]
+name = "dhav1"
+# The compiled plant trajgen.build_plant writes from [build].source.
+mjb = "../out/dhav1/dhav1.mjb"
+# Pinocchio reads the same MJCF the plant is compiled from (buildModelFromMJCF);
+# adapter.build refuses the pair unless body placements and the mass matrix agree.
+mjcf = "../out/assets/xterra_robots/models/dhav1_description/mujoco/dhav1.xml"
+
+[build]
+# xterra_robots (BSD-3-Clause, Copyright (c) 2025-2026 xTerra Robotics; its LICENSE is in
+# the checkout), the DHAV 1.3 legged model rebuilt from the Aug-27 CAD export, branch
+# feat/dhav1-v1.3, pinned by commit.
+repo = "https://github.com/xterra-robotics/xterra_robots.git"
+commit = "8b477bbebf1e05de825fa161fc3bd88abb867efd"
+checkout = "../out/assets/xterra_robots"
+source = "../out/assets/xterra_robots/models/dhav1_description/mujoco/scene.xml"
+feet = "{leg}_foot_collision"
+# Two contact changes, both to the training plant's values. The MJCF leaves the feet at
+# MuJoCo's default solref (0.02 s): 2.3 mm of standing penetration, which trajgen's
+# penetration gate rejects (2 mm); 0.01 s gives 0.7 mm. Its condim-6 feet also carry
+# torsional / rolling friction 0.02 / 0.01 m, a 1 cm lever resisting the sphere's roll
+# that a point-contact plan cannot represent (open-loop interval error 0.076 rad, test
+# limit 0.05); 1e-3 / 1e-4 gives 0.017. Sliding friction stays the MJCF's 0.8.
+foot_solref = [0.01, 1.0]
+foot_friction = [0.8, 1e-3, 1e-4]
+
+[contract]
+# Asserted against the compiled model at load. 0.002 s x 10 = a 20 ms control step.
+physics_timestep = 0.002
+substeps = 10
+# Joint servo gains.
+kp = 40.0
+kd = 1.0
+# Standalone command-delta encoding a_k = (ctrl_k - ctrl_{k-1}) / action_scale,
+# |a_k| <= 1; it is also the walk's command slew limit.
+action_scale = 0.6
+
+[motor]
+# Joint-side DC motor law per role, [saturation N m, no-load rad/s]:
+#     tau_max(w) = min( sat * (1 - |w|/w_nl),  flim )
+# with flim the plant's force limit (the MJCF motor ctrlrange: 40 / 80 N m).
+# xterra_robots publishes the actuator rating (40 N m, 80 N m at the calf) and a
+# placeholder maximum joint speed (config/dhav1.yaml velocity_max, 17.85 rad/s), not a
+# curve. As for Go2, the law is the simplest one consistent with both: flat at the
+# rating to half the maximum speed, linear to zero at it (sat = 2 flim, w_nl = the
+# maximum speed). Replace it with a measured curve if you have one.
+hip = [80.0, 17.85]
+thigh = [80.0, 17.85]
+calf = [160.0, 17.85]
+
+[contact]
+# The foot spheres carry friction 0.8 at priority 1; the optimiser keeps a margin.
+mu = 0.8
+cone_margin = 0.8
+
+[pose]
+# Nominal standing pose (0.40 m stance).
+hip = 0.0
+thigh = 0.7593
+calf = -1.4454
+
+[gait]
+# Walk scheduler foothold reach: thigh-joint-to-foot-centre 0.509 m + foot radius.
+leg_reach = 0.53

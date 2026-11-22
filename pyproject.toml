@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trajopt"
+version = "0.1.0"
+description = "Offline reference-motion generation for legged robots, solved and validated on the exact training plant"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+requires-python = ">=3.13,<3.14"
+# The tested environment is requirements-solver.lock (hash-pinned, macOS arm64 / CPython 3.13). Install that first
+# and then this package with --no-deps; the pins below only stop a plain install from pulling other versions.
+dependencies = [
+    "mujoco==3.11.0",
+    "numpy==2.3.5",
+    "scipy==1.18.1",
+    "pin==3.8.0",
+    "crocoddyl==3.1.0",
+]
+
+[project.optional-dependencies]
+video = ["ImageIO==2.37.4", "imageio-ffmpeg==0.6.0", "pillow==12.3.0", "glfw==2.10.2", "PyOpenGL==3.1.10"]
+tools = ["matplotlib==3.11.2"]
+
+[tool.setuptools]
+# Only the solver package is importable; tools/ and tests/ are scripts run from the repo root.
+packages = ["trajgen", "trajgen.motions"]

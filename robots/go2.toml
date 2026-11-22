@@ -1,0 +1,75 @@
+# Unitree Go2 robot configuration: the second example robot (robots/dhav1.toml is the first).
+#
+# Every key is required unless trajgen/config.py lists it as OPTIONAL, and unknown
+# keys are rejected: a misspelt field that silently falls back to a default is how
+# a trajectory ends up solved for a different plant than the one it is validated on.
+#
+# Relative paths resolve against this file. `~` and ${ENV} are expanded.
+#
+# Build the plant once (fetches the model, compiles, settles the stand):
+#     .venv/bin/python -m trajgen.build_plant robots/go2.toml
+
+[model]
+name = "go2"
+# The compiled plant trajgen.build_plant writes from [build].source.
+mjb = "../out/go2/go2.mjb"
+# Pinocchio reads the same MJCF the plant is compiled from (buildModelFromMJCF);
+# adapter.build refuses the pair unless body placements and the mass matrix agree.
+mjcf = "../out/assets/mujoco_menagerie/unitree_go2/go2.xml"
+
+[build]
+# MuJoCo Menagerie (BSD-3-Clause, see unitree_go2/LICENSE), pinned by commit: git
+# checks the content, so the plant is reproducible from this file alone.
+repo = "https://github.com/google-deepmind/mujoco_menagerie.git"
+commit = "370c43965323c0944b433b202aac5058b5f907a9"
+checkout = "../out/assets/mujoco_menagerie"
+source = "../out/assets/mujoco_menagerie/unitree_go2/scene.xml"
+# Menagerie names the foot spheres after the leg; the plant calls them {leg}_foot.
+feet = "{leg}"
+# The one contact change: Menagerie gives the feet a soft solimp (0.015 1 0.022, about
+# 13 mm of standing penetration, which trajgen's penetration gate rejects). MuJoCo's
+# default solimp is used instead, as in the MJX / mjbatch Go1 joystick recipe.
+foot_solimp = [0.9, 0.95, 0.001, 0.5, 2.0]
+
+[contract]
+# Asserted against the compiled model at load. 0.002 s x 10 = a 20 ms control step.
+# kp / kd are Menagerie's own Go2 position servo (go2_mjx.xml: gainprm 50, biasprm
+# 0 -50 -0.5), with the joints' damping 2 N m s/rad kept from the MJCF. The 20 / 0.5
+# often deployed on the real robot is too slow a servo against that damping
+# ((kd + damping) / kp = 0.125 s, six control steps) for a plan to be tracked.
+physics_timestep = 0.002
+substeps = 10
+kp = 50.0
+kd = 0.5
+# Standalone command-delta encoding a_k = (ctrl_k - ctrl_{k-1}) / action_scale,
+# |a_k| <= 1; it is also the walk's command slew limit.
+action_scale = 0.6
+
+[motor]
+# Joint-side DC motor law per role, [saturation N m, no-load rad/s]:
+#     tau_max(w) = min( sat * (1 - |w|/w_nl),  flim )
+# with flim the plant's force limit (the MJCF motor ctrlrange: 23.7 / 45.43 N m).
+# Unitree publishes the peak torque and the maximum joint speed (URDF: 23.7 N m and
+# 30.1 rad/s for hip / thigh, 45.43 N m and 15.70 rad/s for the calf), not a curve.
+# The law used is the simplest one consistent with both: flat at the peak torque to
+# half the maximum speed, linear to zero at the maximum speed (sat = 2 flim,
+# w_nl = maximum speed). Replace it with a measured curve if you have one.
+hip = [47.4, 30.1]
+thigh = [47.4, 30.1]
+calf = [90.86, 15.70]
+
+[contact]
+# The foot spheres carry friction 0.8 at priority 1; the optimiser keeps a margin.
+mu = 0.8
+cone_margin = 0.8
+
+[pose]
+# Menagerie's `home` keyframe joint angles.
+hip = 0.0
+thigh = 0.9
+calf = -1.8
+
+[gait]
+# Hip-to-foot extension for the walk scheduler's foothold reach limit: thigh 0.213 m
+# + calf 0.213 m + foot radius 0.022 m.
+leg_reach = 0.45
